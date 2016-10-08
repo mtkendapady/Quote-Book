@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html ng-app="quoteBook" lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <link rel="stylesheet" href="styles.css">
+  <title>Quote Book</title>
+</head>
+<body ng-controller="quoteCtrl">
+  <section id="newquote-container">
+      <textarea name="name" rows="8" cols="40" placeholder="Add a quote. Limit to 140 characters." ng-model="quoteText"></textarea>
+      <input type="text" placeholder="Author" ng-model="quoteAuthor"/>
+      <div id="submitform">
+          <button ng-click="addQuote(quoteText, quoteAuthor)">Submit Quote</button>
+      </div>
+  </section>
+
+  <section id="quotes-container">
+    <div class="quote" ng-repeat="quote in quotes | filter: quoteFilter">
+      <div class="button-container">
+        <button class="quote-button" ng-click="removeQuote(quote.author)">Delete quote</button>
+      </div>
+      <div class="quote-container">
+        <div class="quotetext">
+          "{{ quote.text }}"
+        </div>
+        <div class="quoteauthor">
+          by <span>{{ quote.author }}</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.5.8/angular.js"></script>
+  <script type="text/javascript" src="./src/app.js"></script>
+  <script type="text/javascript" src="./src/srvc.js"></script>
+  <script type="text/javascript" src="./src/ctrl.js"></script>
+</body>
+</html>
